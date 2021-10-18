@@ -1,9 +1,9 @@
-import './App.css';
-import { TimeMachine } from './components/TimeMachine';
+import "./App.css";
+import { TimeMachine } from "./components/TimeMachine";
 
 function App() {
   function sayHello() {
-    console.log('Hey!');
+    console.log("Hey!");
   }
   return (
     <div className="App">
@@ -16,9 +16,9 @@ function App() {
        * and take a look into the nitty gritty.
        */}
       <TimeMachine
-        fluxCapacitorVoltage="300V"
-        spaceTimeDomain="Edison-Delta"
-        onTemporalDisplacement={sayHello()}
+        fluxCapacitorVoltage={300}
+        spaceTimeDomain="Durbin-Watson"
+        onTemporalDisplacement={sayHello}
       />
     </div>
   );

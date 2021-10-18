@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 /*
  *
@@ -137,7 +137,11 @@ import { useEffect, useState } from 'react';
  * https://www.typescriptlang.org/docs/handbook/intro.html
  */
 
-/* 02 */
+type TimeMachineProps = {
+  fluxCapacitorVoltage: number;
+  spaceTimeDomain: "Manova" | "Durbin-Watson";
+  onTemporalDisplacement: Function;
+};
 
 /**
  * The TimeMachine Component ⏰
@@ -148,49 +152,51 @@ import { useEffect, useState } from 'react';
  * If you got here by command clicking,
  * scroll up to the top to read what to do next!
  */
-export const TimeMachine = (
-  { fluxCapacitorVoltage, spaceTimeDomain, onTemporalDisplacement } /* 03 */,
-) => {
+export const TimeMachine = ({
+  fluxCapacitorVoltage,
+  spaceTimeDomain,
+  onTemporalDisplacement,
+}: TimeMachineProps) => {
   // You don't have to change anything below this line! 😱
   const [temporalDestination, setTemporalDestination] = useState(null);
 
   useEffect(() => {
     const calculateTemporalDisplacement = () => {
-      if (typeof fluxCapacitorVoltage !== 'number') {
+      if (typeof fluxCapacitorVoltage !== "number") {
         throw new Error(
-          'Flux Capacitor exploded because voltage setting was not a number.',
+          "Flux Capacitor exploded because voltage setting was not a number."
         );
       }
       if (
-        typeof spaceTimeDomain !== 'string' ||
-        !['Manova', 'Durbin-Watson'].includes(spaceTimeDomain)
+        typeof spaceTimeDomain !== "string" ||
+        !["Manova", "Durbin-Watson"].includes(spaceTimeDomain)
       ) {
         throw new Error(
-          "Passenger got lost in the space time continuum because the space time domain wasn't one of the valid values: 'Manova' or 'Durbin-Watson'",
+          "Passenger got lost in the space time continuum because the space time domain wasn't one of the valid values: 'Manova' or 'Durbin-Watson'"
         );
       }
       const randomDate = (start, end) => {
         return new Date(
-          start.getTime() + Math.random() * (end.getTime() - start.getTime()),
+          start.getTime() + Math.random() * (end.getTime() - start.getTime())
         );
       };
       return randomDate(new Date(1885, 0, 1), new Date(2015, 0, 1));
     };
     setTemporalDestination(calculateTemporalDisplacement());
-    if (typeof onTemporalDisplacement !== 'function') {
+    if (typeof onTemporalDisplacement !== "function") {
       throw new Error(
-        'Passenger got lost while trying to execute temporal displacment function.',
+        "Passenger got lost while trying to execute temporal displacment function."
       );
     }
     onTemporalDisplacement();
   }, []);
 
   return (
-    <div style={{ margin: '2rem', fontWeight: 700 }}>
+    <div style={{ margin: "2rem", fontWeight: 700 }}>
       {temporalDestination
-        ? 'Reached temporal destination: ' +
+        ? "Reached temporal destination: " +
           temporalDestination.toLocaleString()
-        : ''}
+        : ""}
     </div>
   );
 };
